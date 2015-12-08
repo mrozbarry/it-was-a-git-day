@@ -13,7 +13,7 @@ It's a fun interface for teams (or individuals) to see and hear a custom live-st
 ## Install
 
 ```bash
-$ npm install
+npm install
 ```
 
 ## Running
@@ -21,14 +21,13 @@ $ npm install
 Run the development server
 
 ```bash
-$ npm start
+npm start
 ```
 
 Build production javascript bundle
 
 ```bash
-$ npm run compile
-$ npm start
+npm run compile && npm start
 ```
 
 ## Unit Testing
