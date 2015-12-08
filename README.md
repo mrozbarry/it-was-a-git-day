@@ -1,5 +1,9 @@
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+# IMPORTANT NOTE
+
+This isn't ready for public consumption yet
+
 # What is this?
 
 It's a fun interface for teams (or individuals) to see and hear a custom live-stream of what's happening in their repos.
