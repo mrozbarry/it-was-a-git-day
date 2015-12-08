@@ -1,0 +1,7 @@
+{
+  "name": "It was a git day",
+  "description": "Live statistics and streaming of what's happening in your repos",
+  "repository": "https://github.com/mrozbarry/it-was-a-git-day",
+  "website": "http://mrbarry.com",
+  "success_url": "/"
+}
