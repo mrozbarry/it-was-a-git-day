@@ -16,8 +16,8 @@ validateRequest = (request, response, data) ->
   console.log '========== headers ==============='
   console.log request.headers
 
-  signature = request.headers['X-Hub-Signature']
-  id = request.headers['X-GitHub-Delivery']
+  signature = request.headers['x-hub-signature']
+  id = request.headers['x-github-delivery']
 
   unless signature?
     return respondWithError response, error: 'No x-hub-signature header'
@@ -43,7 +43,7 @@ module.exports = (app, engine) ->
 
       responseObject = JSON.parse(githubBody)
 
-      switch request.headers['X-GitHub-Event']
+      switch request.headers['x-github-event']
         when 'ping'
           engine.publishPing responseObject
         when 'push'
