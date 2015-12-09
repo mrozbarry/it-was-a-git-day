@@ -12,8 +12,8 @@ respondWithError = (response, jsonResponse) ->
 
 validateRequest = (request, response, data) ->
   return true if process.env.NODE_ENV != 'production'
-  signature = request.headers['x-hub-signature']
-  id = request.headers['x-github-delivery']
+  signature = request.headers['X-Hub-Signature']
+  id = request.headers['X-GitHub-Delivery']
 
   unless signature
     return respondWithError response, error: 'No x-hub-signature header'
@@ -39,7 +39,7 @@ module.exports = (app, engine) ->
 
       responseObject = JSON.parse(githubBody)
 
-      switch request.headers['x-github-event']
+      switch request.headers['X-GitHub-Event']
         when 'ping'
           engine.publishPing responseObject
         when 'push'
