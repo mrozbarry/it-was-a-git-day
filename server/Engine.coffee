@@ -24,6 +24,14 @@ module.exports = class Engine
   registerAdaptor: (adaptor) ->
     adaptor(@app, @)
 
+  publishPing: (payload) ->
+    @_broadcast(
+      type: 'ping'
+      active: payload.active
+      events: payload.events
+      repository: _.pick payload.repository, ['id', 'name', 'full_name', 'description']
+    )
+
   publishPush: (payload) ->
     @_broadcast(
       type: 'push'

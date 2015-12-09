@@ -37,9 +37,13 @@ module.exports = (app, engine) ->
     request.on 'end', ->
       return unless validateRequest(request, response, githubBody)
 
+      responseObject = JSON.parse(githubBody)
+
       switch request.headers['x-github-event']
+        when 'ping'
+          engine.publishPing responseObject
         when 'push'
-          engine.publishPush JSON.parse(githubBody)
+          engine.publishPush responseObject
 
       response.writeHead 200, 'content-type': 'application/json'
       response.end JSON.stringify(success: true)
