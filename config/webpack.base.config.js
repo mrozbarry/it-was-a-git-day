@@ -1,16 +1,15 @@
 var Webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     path = require('path'),
-    mainPath = path.resolve(__dirname, '..', 'assets', 'scripts', 'index.coffee'),
+    mainPath = path.resolve(__dirname, '..', 'apps', 'git-day', 'index.coffee'),
     webpackPaths = require('./webpack.paths.js');
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'eval',
 
-  entry: [
-    "webpack-hot-middleware/client",
-    mainPath
-  ],
+  entry: {
+    bundle: [mainPath]
+  },
 
   output: {
     path: webpackPaths.path,
