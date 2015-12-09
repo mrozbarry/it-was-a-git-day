@@ -12,13 +12,14 @@ respondWithError = (response, jsonResponse) ->
 
 validateRequest = (request, response, data) ->
   return true if process.env.NODE_ENV != 'production'
+
   signature = request.headers['X-Hub-Signature']
   id = request.headers['X-GitHub-Delivery']
 
-  unless signature
+  unless signature?
     return respondWithError response, error: 'No x-hub-signature header'
 
-  unless id
+  unless id?
     return respondWithError response, error: 'No x-github-delivery header'
 
   unless data
