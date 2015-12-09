@@ -4,7 +4,6 @@
 crypto = require('crypto')
 
 signBlob = (key, blob) ->
-  console.log '===== signBlob', key
   digest = crypto.createHmac('sha1', key).update(blob).digest('hex')
   "sha1=#{digest}"
 
