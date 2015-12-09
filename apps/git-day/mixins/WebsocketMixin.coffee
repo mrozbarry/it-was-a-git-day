@@ -2,9 +2,9 @@ WebSocket = require('ws')
 
 module.exports =
   socket: null
+  _socketClosedLocally: false
 
   connectSocket: ->
-
     isSecure = window.location.protocol == "https:"
     host = [
       if isSecure then "wss://" else "ws://"
@@ -14,6 +14,7 @@ module.exports =
     websocketHost = host.join ''
 
     @socket = new WebSocket(websocketHost)
+    @_socketClosedLocally = false
     @socketWillConnect?(@socket)
 
     @socket.onopen = =>
@@ -22,14 +23,16 @@ module.exports =
 
     @socket.onerror = (e) =>
       @socketDidHaveError?(@socket, e)
+      console.log 'socket error', arguments
 
     @socket.onclose = =>
-      @socketDidClose?(@socket)
+      @socketDidClose?(@socket, closeByPeer: !@_socketClosedLocally)
 
     @socket.onmessage = (e) =>
       @socketReceivedMessage?(@socket, e)
 
   disconnectSocket: ->
+    @_socketClosedLocally = true
     @socketWillClose(@socket)
     @socket.close()
     @socket = null
