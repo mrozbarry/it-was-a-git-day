@@ -11,15 +11,8 @@ module.exports = class Engine
       clientTracking: true
     }
     @server.on 'connection', (client) ->
-      console.log '--- Client connected ---'
-
       client.on 'message', (data, flags) ->
-        console.log 'Client message', data, flags
-
       client.on 'close', ->
-        console.log 'Client disconnected'
-
-    console.log '=== Created websocket server ==='
 
   registerAdaptor: (adaptor) ->
     adaptor(@app, @)
@@ -41,7 +34,6 @@ module.exports = class Engine
     )
 
   _broadcast: (message) ->
-    console.log 'broadcast', message
     messageString = JSON.stringify(message)
     _.each @server.clients, (client) ->
       client.send(messageString)
