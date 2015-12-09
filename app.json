@@ -3,5 +3,14 @@
   "description": "Live statistics and streaming of what's happening in your repos",
   "repository": "https://github.com/mrozbarry/it-was-a-git-day",
   "website": "http://mrbarry.com",
-  "success_url": "/"
+  "success_url": "/",
+  "env": {
+    "GITHUB_SECRET": {
+      "description": "Your github webhook secret to verify that the hook was called from github."
+    }
+  },
+  "image": "heroku/nodejs",
+  "addons": [
+    "heroku-redis:hobby-dev"
+  ]
 }
