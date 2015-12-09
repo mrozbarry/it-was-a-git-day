@@ -18,7 +18,7 @@ if development()
   Webpack = require("webpack")
   WebpackDevMiddleware = require("webpack-dev-middleware")
   WebpackHotMiddleware = require("webpack-hot-middleware")
-  webpackConfig = require("../config/webpack.config.js")
+  webpackConfig = require("../config/webpack.development.config.js")
 
   console.log 'Application is not in production mode, activating middleware...'
   compiler = Webpack(webpackConfig)
@@ -47,13 +47,15 @@ server.listen app.get('port'), ->
   console.log "http server listening on %d", app.get('port')
 
 # ---
-# Instantiate Adaptors Here!
+# Init engine and load adaptors
 # ---
 
-GithubAdaptor(app, engine)
+Engine = require('./Engine.coffee')
+engine = new Engine(app, server)
+engine.registerAdaptor require('./adaptors/GithubAdaptor')
 
 # ---
-# Default route to the app for lazy people
+# App routes
 # ---
 
 app.get '*', (req, res) ->
