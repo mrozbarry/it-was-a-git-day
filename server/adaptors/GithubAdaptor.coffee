@@ -1,6 +1,8 @@
 # Adapted from rvagg/github-webhook-handler
 # https://github.com/rvagg/github-webhook-handler/blob/master/github-webhook-handler.js
 
+crypto = require('crypto')
+
 signBlob = (key, blob) ->
   digest = crypto.createHmac('sha1', key).update(blob).digest('hex')
   "sha1=#{digest}"
