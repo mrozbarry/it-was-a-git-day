@@ -13,6 +13,9 @@ respondWithError = (response, jsonResponse) ->
 validateRequest = (request, response, data) ->
   return true if process.env.NODE_ENV != 'production'
 
+  console.log '========== headers ==============='
+  console.log request.headers
+
   signature = request.headers['X-Hub-Signature']
   id = request.headers['X-GitHub-Delivery']
 
