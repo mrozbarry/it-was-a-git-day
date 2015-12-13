@@ -2,7 +2,7 @@
 
 # IMPORTANT NOTE
 
-This isn't ready for public consumption yet
+This isn't ready for public consumption yet.
 
 # What is this?
 
